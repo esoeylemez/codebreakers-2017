@@ -1,0 +1,31 @@
+
+#+TITLE: Codebreakers
+#+AUTHOR: Ertugrul Söylemez
+#+EMAIL: esz@posteo.de
+#+LANGUAGE: de
+
+#+OPTIONS: ':t -:t tags:nil toc:nil todo:nil
+#+STARTUP: content
+#+TODO: TODO | DONE
+
+#+LATEX_CLASS: textonly
+#+LATEX_HEADER_EXTRA: \usepackage[ngerman]{babel}
+
+
+* Diverses
+** Online-Repository
+
+https://github.com/esoeylemez/codebreakers-2017
+
+
+* TODO Grundlagen [66%]
+** DONE Was ist Kryptografie?
+** DONE Worum geht es hier?
+** TODO Praxis
+
+* DONE Klassische Kryptografie [100%]
+** DONE Rot-13
+** DONE Caesar
+** DONE Vigenere
+** DONE Angriffsmethoden [100%]
+*** DONE Häufigkeitsanalyse
