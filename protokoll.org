@@ -18,10 +18,10 @@
 https://github.com/esoeylemez/codebreakers-2017
 
 
-* TODO Grundlagen [66%]
+* DONE Grundlagen [100%]
 ** DONE Was ist Kryptografie?
 ** DONE Worum geht es hier?
-** TODO Praxis
+** DONE Praxis
 
 * DONE Klassische Kryptografie [100%]
 ** DONE Rot-13

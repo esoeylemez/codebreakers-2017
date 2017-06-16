@@ -59,6 +59,17 @@ blocks n f = go
             in liftA2 (<>) (f xs1) (go xs2)
 
 
+splitsOn :: Char -> Traversal' Tl.Text Tl.Text
+splitsOn c f = go
+    where
+    go xs
+        | Just (c', xs') <- Tl.uncons xs, c' == c = Tl.cons c' <$> go xs'
+        | Tl.null xs = pure xs
+        | otherwise  =
+            let (xs1, xs2) = Tl.break (== c) xs
+            in liftA2 (<>) (f xs1) (go xs2)
+
+
 evalSearch :: Search a -> [a]
 evalSearch = flip evalStateT mempty
 

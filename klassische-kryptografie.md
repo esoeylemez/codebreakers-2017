@@ -100,3 +100,30 @@ Angriff gegen Vigenere
 
     Iio|x s|xt |jix| Go|mes|rto|ct.|
     Es|s c|jhb| lk|sgo|w Q|jho|nmd|jxd|.
+
+
+Vigenere mit Bits
+=================
+
+k1 = 0
+k2 = 1
+k3 = 1
+k4 = 0
+k5 = 0
+k6 = 1
+
+Klartext:  001010|110110|010100|010000
+Schlüssel: 011001|011001|011001|011001
+
+           010011|101111|001101|001001
+
+
+Exkurs: Exklusiv-Oder (XOR)
+---------------------------
+
+"entweder, oder"
+
+     |0 1         | falsch    wahr
+    -+---  -------+---------------
+    0|0 1  falsch | falsch    wahr
+    1|1 0    wahr |   wahr  falsch

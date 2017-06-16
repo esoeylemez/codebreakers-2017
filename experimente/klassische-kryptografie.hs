@@ -14,42 +14,40 @@ import Rapid
 import Rapid.Term
 
 
-experiment :: Crypto ()
+experiment :: Search Text
 experiment = do
-    put ("Dies ist ein Geheimtext.\n" <>
-         "Ein sehr langer Geheimtext.")
-    let k1 = 5
-        k2 = 0
-        k3 = 10
-    zoom (blocks 3) $ do
+    put "Dies ist eine Geheimnachricht."
+    let k1 = 8
+        k2 = 12
+        k3 = 2
+        k4 = 17
+
+    -- Verschlüsselung
+    zoom (blocks 4) $ do
         ix 0 . letter += k1
         ix 1 . letter += k2
         ix 2 . letter += k3
+        ix 3 . letter += k4
 
-
-experiment2 :: Search Text
-experiment2 = do
-    put "Iiox sxt jix Gomesrtoct.\nEss cjhb lksgow Qjhonmdjxd."
-
-    (k1,k2,k3) <-
-        lift [(9 - 4, 19 - 4, 14 - 4),
-              (9 - 8, 19 - 4, 14 - 4),
-              (9 - 4, 19 - 8, 14 - 4),
-              (9 - 4, 19 - 4, 14 - 8),
-              (9 - 8, 19 - 8, 14 - 4),
-              (9 - 8, 19 - 4, 14 - 8),
-              (9 - 4, 19 - 8, 14 - 8),
-              (9 - 13, 19 - 4, 14 - 4),
-              (9 - 4, 19 - 13, 14 - 4),
-              (9 - 4, 19 - 19, 14 - 4)]
-
+    -- Angriff: Häufigkeitsanalyse
+    -- ENIRSTAH
     zoom (blocks 3) $ do
-        ix 0 . letter -= k1
-        ix 1 . letter -= k2
-        ix 2 . letter -= k3
+        ix 1 . letter -= 5
+        -- ix 0 . letter -= 0
+        -- ix 1 . letter -= 16
+        -- ix 2 . letter -= 9
+        -- ix 3 . letter -= 20
+        pure ()
 
-    result <- get
-    pure (Tl.pack (show (k1,k2,k3)) <> " " <> result)
+    -- Angriff: Durchprobieren aller Schlüssel
+    -- Komplexität: ca. 390000
+    -- zoom (blocks 4) $ do
+    --     ix 0 . letter -= 1
+    --     ix 1 . letter -= 1
+    --     ix 2 . letter -= 2
+    --     ix 3 . letter -= 1
+
+    get
 
 
 main :: IO ()
@@ -57,4 +55,4 @@ main =
     rapid 0 $ \r -> do
         termRef <- createRef r "term-ref" newTermRef
         start r "term" (runTerm (urxvtAt "/home/never/.nix-profile/bin/urxvt") termRef)
-        restart r "app" . terminal termRef $ runSearch experiment2
+        restart r "app" . terminal termRef $ runSearch experiment
