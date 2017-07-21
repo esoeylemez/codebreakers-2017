@@ -123,3 +123,111 @@ Wir rechnen "modulo 26" ("auf einer 26-Stunden-Uhr"):
 1 + (-1) ≡ 0  (mod 10)
 
 9 ≡ -1  (mod 10)
+
+
+       -1          0          1          2          3
+        0987654321 0123456789 0123456789 0123456789 0123456789
+    ... QRSTUVWXYZ ABCDEFGHIJ KLMNOPQRST UVWXYZABCD EFGHIJKLMN ...
+
+Verschlüsselung:
+
+    'B' → 1
+    enc(x) := x + 13
+    enc(1) = 14
+    14 → 'O'
+
+Entschlüsselung:
+
+    'O' → 14
+    dec(x) := x + 13
+    dec(14) = 27
+    27 → 'B'
+
+Verschlüsselung:
+
+    'T' → 19
+    enc(19) = 19 + 13 = 32
+    32 ≡ 6 (mod 26)
+    6 → 'G'
+
+Entschlüsselung:
+
+    'G' → 6
+    dec(6) = 6 + 13 = 19
+    19 → 'T'
+
+Feststellung:
+
+    ∀ x. (x + 13) + 13 ≡ x (mod 26)
+    ∀ x. x + (13 + 13) ≡ x (mod 26)
+    ∀ x. x + 26 ≡ x        (mod 26)
+    ∀ x. x + 26 ≡ x + 0    (mod 26)
+    ∀ x. x + 26 ≡ x + 52   (mod 26)
+
+Wenn wir in einer Addition Zahlen durch gleichwertige Zahlen ersetzen,
+bleibt die Gleichwertigkeit erhalten:
+
+    x ≡ 31 + 17 (mod 26)
+    x ≡  5 + 17 (mod 26)
+    x ≡      22 (mod 26)
+    x ≡      -4 (mod 26)
+
+Auch bei der Multiplikation dürfen wir das:
+
+    x ≡   24·7 (mod 26)
+    x ≡ (-2)·7 (mod 26)
+    x ≡    -14 (mod 26)
+    x ≡     12 (mod 26)
+
+    x ≡   17·9 (mod 10)
+    x ≡    7·9 (mod 10)  | weil:     17 ≡    7 (mod 10)
+    x ≡ 7·(-1) (mod 10)  | weil:      9 ≡ (-1) (mod 10)
+    x ≡     -7 (mod 10)  | weil: 7·(-1) ≡   -7 (mod 10)
+    x ≡      3 (mod 10)  | weil:     -7 ≡    3 (mod 10)
+
+    x ≡ 18 +    8·15 (mod 11)
+    x ≡  7 + (-3)· 4 (mod 11) | weil: 18 ≡ 7, 8 ≡ -3, 15 ≡ 4 (mod 11)
+    x ≡  7 +   (-12) (mod 11)
+    x ≡  7 +    (-1) (mod 11) | weil: -12 ≡ -1 (mod 11)
+    x ≡            6 (mod 11)
+
+Modulare Inverse
+----------------
+
+∃ x. 5 + x ≡ 0 (mod 10), weil: x = -15, x = -5, x = 5, x = 15, …
+
+∃ x. 7 + x ≡ 0 (mod 19), weil: x = -26, x = -7, x = 12, x = 31, …
+
+(11 + 7) + 12 ≡ 11 (mod 19)
+11 + (7 + 12) ≡ 11 (mod 19)
+11 +        0 ≡ 11 (mod 19)
+
+∃ x. 2·x ≡ 1 (mod 19);  x = -28, x = -9, x = 10, x = 29, x = 48, …
+
+  5·2 ≡  10 (mod 19)
+10·10 ≡ 100 (mod 19)
+  100 ≡ 100 - 5·19 (mod 19)
+  100 ≡   5 (mod 19)
+
+(5·2)·10 ≡ 5 (mod 19)
+5·(2·10) ≡ 5 (mod 19)
+5·     1 ≡ 5 (mod 19)
+
+  (6·2)·10 ≡ 6 (mod 19)
+     12·10 ≡ 6 (mod 19)
+       120 ≡ 6 (mod 19)
+120 - 6·19 ≡ 6 (mod 19)
+
+(6·2)·10 ≡ 6 (mod 19)
+6·(2·10) ≡ 6 (mod 19)
+6·    20 ≡ 6 (mod 19)
+6·     1 ≡ 6 (mod 19)
+
+∃ (x ∈ ℤ). 3·x ≡ 1 (mod 19);  x ≡ 13 (mod 19)
+
+3·13 ≡ 1 (mod 19)
+
+ 1/3 ≡        13 (mod 19)
+ 4/3 ≡      4·13 (mod 19)
+16/9 ≡    4²·13² (mod 19)
+  16 ≡ 3²·4²·13² (mod 19)
