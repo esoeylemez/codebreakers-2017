@@ -1,4 +1,6 @@
 
+(* Coq *)
+
 Require Import ZArith.
 Require Import Unicode.Utf8.
 
@@ -14,6 +16,9 @@ Definition modEq x y :=
   ∃ (k : Z), x - y = k*n.
 
 Infix "≡" := modEq (at level 70).
+
+(* 3 ≡ 8 (mod n) *)
+(* n = 5 → 3 ≡ 8 *)
 
 Example test1 : n = 5 → 3 ≡ 8.
 Proof.
@@ -113,42 +118,56 @@ Theorem modEq_trans :
   ∀ x y z,
     x ≡ y → y ≡ z → x ≡ z.
 Proof.
+  intros x y z [k0 H0] [k1 H1].
+  unfold modEq.
+  exists (k0 + k1).
+  SearchRewrite (_*_ + _*_).
+  rewrite Z.mul_add_distr_r.
+  rewrite <- H0.
+  rewrite <- H1.
+  ring.
+Qed.
 
-(* ¬ P = P → False *)
-
-Theorem lem : ∀ P, not (not P) → P.
+Theorem mod_add_cong :
+  ∀ x1 x2 y1 y2,
+    x1 ≡ x2 →
+    y1 ≡ y2 →
+    x1 + y1 ≡ x2 + y2.
 Proof.
-  unfold not.
+  intros x1 x2 y1 y2 [k0 H0] [k1 H1].
+  unfold modEq.
+  exists (k0 + k1).
+  rewrite Z.mul_add_distr_r.
+  rewrite <- H0.
+  rewrite <- H1.
+  ring.
+Qed.
+
+Goal n = 17 → 3 + 11 ≡ (-14) + 28.
+Proof.
   intros.
+  apply mod_add_cong; unfold modEq; rewrite H.
+  exists 1. ring.
+  exists (-1). ring.
+Qed.
 
 
-(* Zermelo-Fraenkel:
-
-   0 = e
-   1 = {e}
-   2 = {{e}, e}
-   3 = {{{e}, e}, {e}, e}
-
-   Immer größere unendliche Mengen:
-     Aleph0 ≃ ℕ
-     Aleph1
-              ℝ ≃ 2^ℕ
-   Kontinuumshypothese: Aleph1 ≃ ℝ
-
-
-   Konstruktive Mathematik:
-     Law of the Excluded Middle (LEM):
-       ∀ P, P ∨ ¬P
-       ∀ P, ¬¬P → P
-
-     (Angenommen ¬P → Widerspruch) → P.
-
-   Youtube:
-     Andrej Bauer –
-     Five Stages Of Accepting
-     Constructive Mathematics
-
-*)
+Hypothesis mod_mul_cong :
+  ∀ x1 x2 y1 y2,
+    x1 ≡ x2 →
+    y1 ≡ y2 →
+    x1*y1 ≡ x2*y2.
+(* Proof. *)
+(*   intros x1 x2 y1 y2 [k0 H0] [k1 H1]. *)
+(*   unfold modEq. *)
+(*   exists (k0*(-k1)*n). *)
+(*   replace (k0 * (-k1) * n  * n) *)
+(*     with ((k0 * n) * -(k1 * n)) *)
+(*     by ring. *)
+(*   rewrite <- H0. *)
+(*   rewrite <- H1. *)
+(*   replace ((x1 - x2) * - (y1 - y2)) *)
+(*     with (-x1*y1 + x2*y1 + x1*y2 - x2*y2) *)
+(*     by ring. *)
 
 
-Hypothesis test2 : n = 5 → not (3 ≡ 9).
