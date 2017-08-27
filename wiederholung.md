@@ -55,3 +55,58 @@ Ganzzahlen: Kehrwert von x:  x * 1/x = 1.
     1/0 gibt's nicht
     1/1 = 1
     1/2 gibt's nicht
+
+
+Wiederholung vom 04.08.2017
+===========================
+
+Einheiten
+---------
+
+    20    * 1/20      ≡ 1 (mod 77)
+    30    * 1/30      ≡ 1 (mod 77)
+    20*30 * 1/(20*30) ≡ 1 (mod 77)
+
+    1/(20*30) ≡ 1/20 * 1/30  (mod 77)
+
+Beweise: Einheiten sind eindeutig.
+
+
+Einheitenpotenzen und Zyklen
+----------------------------
+
+Ist g eine Einheit, enthält die Sequenz
+
+    g^0, g^1, g^2, g^3, ...
+
+nur Einheiten.  Da es höchstens ϕ(n) Einheiten gibt, wiederholt sich die
+Folge nach spätestens ϕ(n) Zahlen.
+
+Das Produkt `g^x * g^y` ist ein Element der Folge.  Beweis:
+
+    g^x * g^y ≡ g^(x + y)  (mod n)
+
+
+Diffie-Hellman-Verfahren
+------------------------
+
+n = 10007
+g = 2
+
+  Alice       | Öffentlich | Bob
+              | n, g       |
+  xA          | yA ≡ g^xA  |
+              | yB ≡ g^xB  | xB
+  sA ≡ yB^xA  |            | sB ≡ yA^xB
+
+Resultat:  sA ≡ sB (mod n)
+Beweis:
+
+    sA ≡ yB^xA
+       ≡ (g^xB)^xA
+       ≡ g^(xB * xA)
+       ≡ g^(xA * xB)
+       ≡ (g^xA)^xB
+       ≡ sB (mod n)
+
+    s ≡ sA ≡ sB

@@ -182,8 +182,8 @@ Potenz von Basis b:
     2^x * 2^y ≡ 2^(x + y)
 
 
-Potenzen modulo Primzahlen
-==========================
+Diffie-Hellman-Verfahren
+========================
 
 Sei Modul n = 101, Basis g = 2.
 
@@ -202,3 +202,85 @@ Auflösung:
 
     xA = 13
     xE = 17
+
+Sicherheitsbedingungen
+----------------------
+
+### Größe von xA:
+
+    g^xA >= n
+    xA   >= log(n)/log(g)
+
+ansonsten (Gleichung, keine Gleichwertigkeit!):
+
+    log(g^xA)/log(g) = xA
+
+und damit algebraisch lösbar.
+
+
+Angriffe gegen DH
+-----------------
+
+Algebraischer Ansatz:
+
+    s ≡ yA^xB (mod n)
+    s ≡ yB^xA (mod n)
+
+Zu viele Unbekannte.  Inspiration: bei einer Gleichung könnten wir den
+Logarithmus verwenden:
+
+      g^xA = yA
+    → log(g^xA) = log(yA)
+    → xA*log(g) = log(yA)
+    → xA = log(yA)/log(g)
+
+Übertragung auf modulare Gleichwertigkeit:
+
+    g^xA ≡ yA (mod n)
+
+Uns fehlt die Logarithmusfunktion.
+
+
+Brute-Force-Methode
+-------------------
+
+    n = 10007
+    g = 5
+
+    yA = 2000
+
+    g^0 ≡ yA (mod n)?
+    g^1 ≡ yA (mod n)?
+    g^2 ≡ yA (mod n)?
+    ...
+
+Problem: die Potenzen werden bei jedem Schritt komplett neu
+ausgerechnet, daher quadratische Laufzeit (ca. n² Schritte).
+
+Einfache Optimierung:
+
+    y0 ≡ 1    ≡ g^0
+    y1 ≡ g    ≡ g^1
+    y2 ≡ y1*g ≡ g^2
+    y3 ≡ y2*g ≡ g^3
+    ...
+
+Jetzt nur noch lineare Laufzeit (ca. n Schritte).
+
+
+Baby-Step-Giant-Step
+--------------------
+
+Herausforderung (per Brute-Force):
+
+    n = 2^24 - 3
+    g = 5
+
+    g^x ≡ 100 (mod n)
+
+Herausforderung (Baby-Step-Giant-Step):
+
+    n = 2^40 - 87
+    g = 13
+
+    g^x = 150 (mod n)
