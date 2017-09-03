@@ -284,3 +284,22 @@ Herausforderung (Baby-Step-Giant-Step):
     g = 13
 
     g^x = 150 (mod n)
+
+Algorithmus in Einzelschritten:
+
+ 1. Giant-Step-Tabelle der Größe `size` anlegen:
+
+        dx ≈ (n - 1) / size
+        dy ≡ g^dx
+
+        (g^0, 0)
+        (g^0 * dy,        dx) = (g^dx, dx)
+        (g^dx * dy,     2*dx) = (g^(2*dx), dx)
+        (g^(2*dx) * dy, 3*dx) = (g^(3*dx), dx)
+        ...
+
+ 2. Anfang bei `g^x`, und Suche in Baby-Steps:
+
+        g^x       kommt vor → x
+        g^(x + 1) kommt vor → x - 1
+        g^(x + 2) kommt vor → x - 2

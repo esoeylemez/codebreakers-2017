@@ -110,3 +110,53 @@ Beweis:
        ≡ sB (mod n)
 
     s ≡ sA ≡ sB
+
+
+Wiederholung vom 18.08.2017
+===========================
+
+Diffie-Hellman
+--------------
+
+Alice:
+    yA ≡ g^xA (mod n)
+
+Bob:
+    yB ≡ g^xB (mod n)
+
+Gemeinsames Geheimnis:
+    s ≡ yA^xB ≡ yB^xA (mod n)
+
+
+Angriffsansatz
+--------------
+
+Öffentliche Informationen:
+
+    n, g, yA, yB
+
+Suchen nach xA, sodass:
+
+    yA ≡ g^xA (mod n)
+
+
+Brute-Force-Angriff
+-------------------
+
+Durchprobieren:
+
+    yA ≡ g^0?
+    yA ≡ g^1?
+    ...
+    yA ≡ g^xA
+
+Optimierte Variante:
+
+    y(0)            ≡ g^0
+    y(1) ≡ y(0) * g ≡ g^1
+    y(2) ≡ y(1) * g ≡ g^2
+    y(3) ≡ y(2) * g ≡ g^3
+
+und dann durchtesten:
+
+    yA ≡ y(x) → xA = x
