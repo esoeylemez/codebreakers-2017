@@ -69,11 +69,11 @@ bsgs size n g y0 = do
 
 main :: IO ()
 main = do
-    let n = 2^41 + 27
-        g = 2
+    let n = 2^40 - 87
+        g = 13
 
-        x = 100
-        y = powModInteger g x n
+        -- x = 100
+        y = 150 -- powModInteger g x n
 
     size : _ <- map read <$> getArgs
     bsgs size n g y >>= print

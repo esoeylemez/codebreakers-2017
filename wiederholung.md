@@ -160,3 +160,42 @@ Optimierte Variante:
 und dann durchtesten:
 
     yA ≡ y(x) → xA = x
+
+
+Wiederholung vom 01.09.2017
+===========================
+
+
+  Alice      | Öffentlich        | Bob
+-------------+-------------------+--------------
+             | n = 101           |
+             | g = 2             |
+ xA < ϕ(101) |                   |
+ xA = 41     |                   |
+             | yA ≡ g^xA (mod n) |
+             |                   | xB < ϕ(101)
+             |                   | xB = 53
+             | yB ≡ g^xB (mod n) |
+ sA ≡ yB^xA  |                   | sB ≡ yA^xB
+
+Es stellt sich heraus:
+
+      sA
+    ≡ yB^xA
+    ≡ (g^xB)^xA
+    ≡ g^(xB*xA)
+    ≡ g^(xA*xB)
+    ≡ (g^xA)^xB
+    ≡ yA^xB
+    ≡ sB
+
+    → sA ≡ sB
+
+Angenommen:
+
+    log (a^b) = b*log a
+
+      yB = g^xB
+    → log yB / log g = log (g^xB) / log g
+    → log yB / log g = xB
+

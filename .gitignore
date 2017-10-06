@@ -1,2 +1,6 @@
 TAGS
 /logins.txt
+
+/experimente/*
+!/experimente/Makefile
+!/experimente/*.hs
