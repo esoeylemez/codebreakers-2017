@@ -166,17 +166,17 @@ Wiederholung vom 01.09.2017
 ===========================
 
 
-  Alice      | Öffentlich        | Bob
--------------+-------------------+--------------
-             | n = 101           |
-             | g = 2             |
- xA < ϕ(101) |                   |
- xA = 41     |                   |
-             | yA ≡ g^xA (mod n) |
-             |                   | xB < ϕ(101)
-             |                   | xB = 53
-             | yB ≡ g^xB (mod n) |
- sA ≡ yB^xA  |                   | sB ≡ yA^xB
+      Alice      | Öffentlich        | Bob
+    -------------+-------------------+--------------
+                 | n = 101           |
+                 | g = 2             |
+     xA < ϕ(101) |                   |
+     xA = 41     |                   |
+                 | yA ≡ g^xA (mod n) |
+                 |                   | xB < ϕ(101)
+                 |                   | xB = 53
+                 | yB ≡ g^xB (mod n) |
+     sA ≡ yB^xA  |                   | sB ≡ yA^xB
 
 Es stellt sich heraus:
 
@@ -198,4 +198,42 @@ Angenommen:
       yB = g^xB
     → log yB / log g = log (g^xB) / log g
     → log yB / log g = xB
+
+
+Diffie-Hellman
+==============
+
+
+      Alice       |  Öffentlichkeit  |  Bob
+    -----------------------------------------------
+                  |  n = 113         |
+                  |  g = 3           |
+      xA = 13     |                  |  xB = 78
+      yA ≡ g^xA   |                  |  yB ≡ g^xB
+                  |  yA, yB          |
+      sA ≡ yB^xA  |                  |  sB ≡ yA^xB
+
+Schließlich:
+
+    sA ≡ sB
+
+Beweis:
+
+      yB^xA      | yB ≡ g^xB
+    ≡ (g^xB)^xA  | Potenzgesetz
+    ≡ g^(xB*xA)  | Kommutativgesetz
+    ≡ g^(xA*xB)  | Potenzgesetz
+    ≡ (g^xA)^xB  | g^xA ≡ yA
+    ≡ yA^xB
+
+Angreifer:
+
+    yA ≡ g^xA
+
+Normaler Logarithmus funktioniert nicht.  Problem: diskreter
+Logarithmus.
+
+
+Gruppentheorie
+==============
 
