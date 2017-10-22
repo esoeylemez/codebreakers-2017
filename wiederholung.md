@@ -237,3 +237,46 @@ Logarithmus.
 Gruppentheorie
 ==============
 
+Relationen
+----------
+
+Eine Relation ~ über einer Menge A ist eine Untermenge von A².
+
+    A = { 1, 2, 3 }
+    A² = { (1, 1), (1, 2), (1, 3),
+           (2, 1), (2, 2), (2, 3),
+           (3, 1), (3, 2), (3, 3) }
+
+    ~ = { (1, 1), (1, 2), (3, 2) }
+
+Kurzschreibweise:
+
+    "(x, y) ∈ ~" <-> "x ~ y"
+
+Äquivalenzrelationen
+--------------------
+
+Eine Äquivalenzrelation ~ über A ist eine Relation, die folgende
+Eigenschaften besitzt:
+
+  * Reflexivität:  ∀ x,      x ~ x
+  * Symmetrie:     ∀ x y,    y ~ x → x ~ y
+  * Transitivität: ∀ x y, z, x ~ y, y ~ z → x ~ z
+
+Beispiel:
+
+    A = { 1, 2, 3}
+
+    "=" über A:
+
+    "=" = { (1, 1), (2, 2), (3, 3) }
+
+Beispiel:
+
+    ≡(mod 15) über ℤ
+
+    "x ≡ y (mod 15)" <-> "∃ (k ∈ ℤ), k*15 = x - y"
+
+    ≡(mod 15) = { (1, 1), (2, 2), (2, 17), (17, 2)
+
+    Nicht (2 ≡ 3 (mod 15)).
