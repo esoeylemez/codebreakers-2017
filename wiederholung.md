@@ -280,3 +280,155 @@ Beispiel:
     ≡(mod 15) = { (1, 1), (2, 2), (2, 17), (17, 2)
 
     Nicht (2 ≡ 3 (mod 15)).
+
+
+Wiederholung vom 20.10.2017
+---------------------------
+
+### Äquivalenzrelationen
+
+(A, ~), sodass:
+
+  * Reflexivität:  ∀ x, x ~ x
+  * Symmetrie:     ∀ x y, x ~ y → y ~ x
+  * Transitivität: ∀ x y z, x ~ y und y ~ z → x ~ z
+
+### Halbgruppe
+
+(A, ⋄, ~)
+
+  * Geschlossenheit: ⋄ : A² → A
+  * Assoziativität:  ∀ x y z, x ⋄ (y ⋄ z) ~ (x ⋄ y) ⋄ z
+  * Kongruenzgesetz: ∀ x1 x2 y1 y2, x1 ~ x2 und y1 ~ y2 → x1 ⋄ y1 ~ x2 ⋄ y2
+
+    Anwendungsbeispiel:
+
+          x ~ 9
+          3 ⋄ x ⋄ 7 ~ x ⋄ 5
+        → 3 ⋄ 9 ⋄ 7 ~ 9 ⋄ 5
+
+### Monoid
+
+(A, ⋄, ~) Halbgruppe
+
+  * Neutrales Element:
+
+        ∃ id, ∀ x,
+          x ⋄ id ~ x und
+          id ⋄ x ~ x
+
+Alle neutralen Elemente sind äquivalent zueinander:
+
+    Prämisse:
+      id1, id2,
+      id1 ≠ id2,
+      ∀ x, id1 ⋄ x ~ x,
+           x ⋄ id1 ~ x,
+      ∀ y, id2 ⋄ y ~ y,
+           y ⋄ id2 ~ y
+
+    id1 ~ id2
+    id1 ~ id1 ⋄ id2
+    id1 ⋄ id2 ~ id2
+
+    id1 ~ id1 ⋄ id2 ~ id2
+
+### Gruppe
+
+(A, ⋄, ~) Monoid
+
+  * Inverse: ∀ x, ∃ 1/x, x ⋄ 1/x ~ id
+
+### Morphismen (Homomorphismen)
+
+#### Halbgruppenmorphismus:
+
+G = (A, ⋄, ~) Halbgruppe
+H = (B, ♥, ≈) Halbgruppe
+
+Eine Funktion (f : A → B) ist ein Halbgruppenmorphismus, wenn:
+
+  * Strukturerhaltung: ∀ x y, f(x ⋄ y) ≈ f(x) ♥ f(y)
+
+Beispiel:
+
+    G = (ℤ, +, =)
+    H = (ℤ, *, =)
+
+    f : ℤ → ℤ
+    f(x) = a^x
+
+    ∀ x y, a^(x + y) = a^x * a^y
+
+Beispiel:
+
+    G = (A, ⋄, ~)
+    H = (ℤ, +, =)
+
+    f : A → ℤ
+    f(x) := 0
+
+    ∀ x y, f(x ⋄ y) = f(x) + f(y)
+      Beweis:
+        0 = 0 + 0
+
+Beispiel:
+
+    G = (A, ⋄, ~)
+    H = (ℤ, *, =)
+
+    f : A → ℤ
+    f(x) := 1
+    (neutrales Element)
+
+    g : A → ℤ
+    g(x) := 0
+    (absorbierendes Element)
+
+Beispiel:
+
+    G = (A, ⋄, ~)
+    H = G
+
+    f : A → A
+    f(x) := x
+
+    ∀ x y, f(x ⋄ y) ~ f(x) ⋄ f(y)
+      Beweis:
+        x ⋄ y ~ x ⋄ y
+
+
+DH klassisch
+------------
+
+Öffentlich: n, g
+Alice:      xA, yA ≡ g^xA (mod n)
+Bob:        xB, yB ≡ g^xB (mod n)
+Öffentlich: yA, yB
+Alice:      sA ≡ yB^xA (mod n)
+Bob:        sB ≡ yA^xB (mod n)
+→ sA ≡ sB (mod n)
+
+
+DH über beliebigen Gruppen
+--------------------------
+
+Öffentlich: Gruppe G = (A, ⋄, ~), g ∈ A
+Definition:
+
+    (^) bindet stärker als (⋄)
+
+    2^(-5) = 1/(2^5)
+
+    (^) : A × ℤ → A
+    x^0 := id
+    x^e | e < 0 := (1/x)^(-e)
+    x^e := x ⋄ x^(e - 1)
+
+    Eigenschaft: ∀ x e1 e2, (x^e1)^e2 ~ x^(e1 * e2)
+
+Alice:      xA ∈ ℤ, yA ~ g^xA
+Bob:        xB ∈ ℤ, yB ~ g^xB
+Öffentlich: yA, yB ∈ A
+Alice:      sA ~ yB^xA
+Bob:        sB ~ yA^xB

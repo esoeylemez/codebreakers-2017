@@ -107,6 +107,16 @@ Im Allgemeinen: n > 1
         k = k1 + k2
 
 
+Äquivalenzklassen
+-----------------
+
+Äquivalenzrelation ~ über A.  Die Äquivalenzklasse zu x ∈ A ist die
+Menge [x], sodass
+
+    ∀ y, x ~ y → y ∈ [x]  (enthält *alle* gleichwertigen Elemente zu x)
+         y ∈ [x] → x ~ y  (enthält *nur* die gleichwertigen Elemente zu x)
+
+
 Halbgruppen
 -----------
 
@@ -305,3 +315,41 @@ DH über einer beliebigen Gruppe (A, ~, ⋄):
     Bob:        sB ~ yA^xB ∈ A
 
     sA ~ sB
+
+Funktioniert, weil:
+
+    (g^xB)^xA ~ g^(xB * xA) ~ g^(xA * xB) ~ (g^xA)^xB
+
+    (g^xB)^xA ~ g^(xB * xA) und
+    g^(xB * xA) ~ g^(xA * xB) und
+    g^(xA * xB) ~ (g^xA)^xB
+
+Beispiel:
+
+    (ℤ, +, ≡(mod 101)), g = 53
+
+    g^5 ≡ 53 + 53^4
+        ≡ 53 + 53 + 53^3
+        ≡ 53 + 53 + 53 + 53 + 53 + 0
+
+    (^) = (*)
+
+    Alice: xA ∈ ℤ, yA ≡ 70 (mod 101)
+    Bob:   xB ∈ ℤ, yB ≡ 51 (mod 101)
+    Öff.:  yA, yB
+
+    xA ≡ 61*70 (mod 101)
+    xA ≡ 28 (mod 101)
+
+    → nicht sicher
+
+Beispiel:
+
+    (ℤ\(101ℤ), *, ≡(mod 101)), g = 2
+
+Schreibweise:
+
+    101ℤ = { 101*x | x ∈ ℤ }
+    101ℤ ist die Äquivalenzklasse [101] bzgl. ≡(mod 101)
+
+    101ℤ + 1 = { 101*x + 1 | x ∈ ℤ }
