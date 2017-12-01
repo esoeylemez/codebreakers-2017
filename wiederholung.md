@@ -432,3 +432,217 @@ Bob:        xB ∈ ℤ, yB ~ g^xB
 Öffentlich: yA, yB ∈ A
 Alice:      sA ~ yB^xA
 Bob:        sB ~ yA^xB
+
+
+Wiederholung vom 20.10.2017
+---------------------------
+
+Schreibweise: "x ~ x" = "(x, x) ∈ ~"
+
+Eine Relation ~ über A ist eine Äquivalenzrelation, wenn:
+
+  * Reflexivität:  ∀ (x ∈ A), x ~ x
+  * Symmetrie:     ∀ x y,     x ~ y → y ~ x
+  * Transitivität: ∀ x y z,   x ~ y und y ~ z → x ~ z
+
+(A, ~, ∘) ist eine Halbgruppe, wenn:
+
+  * Assioziativität: ∀ x y z, (x ∘ y) ∘ z ~ x ∘ (y ∘ z)
+  * Kongruenz: ∀ x1 x2 y1 y2,
+                   x1 ~ x2 und y1 ~ y2 →
+                   x1 ∘ y1 ~ x2 ∘ y2
+
+Eine Halbgruppe (A, ~, ∘) ist ein Monoid, wenn:
+
+  * Neutrales Element:
+
+        ∃ id, ∀ x,
+            x ∘ id ~ x
+            id ∘ x ~ x
+
+Gleichwertigkeit modulo 10:
+
+    "x ≡ y (mod 10)" =
+    "∃ (k ∈ ℤ), x - y = k*10"
+
+Beispiel:
+
+    (ℕ, =, +): Monoid.
+    (ℤ, =, *): Monoid.
+    (ℕ\{0}, =, +): Halbgruppe, kein Monoid.
+    (ℕ\{1}, =, +): Monoid.
+    (ℕ\{2}, =, +): Unsinn (Addition ist nicht definiert).
+    (ℤ, ≡(mod 10), +): ∀ k, Monoid mit id = k*10
+    ({}, =, f): Halbgruppe. Kein Monoid.
+    (A*, =, ++): Kleene-Star: Menge der Listen aus A. Monoid.
+    (A → A, =, ∘): Monoid.
+        f = g → ∀ x, f(x) = g(x)
+        (f ∘ g)(x) := f(g(x))
+
+        ∀ f g h, ∀ x, ((f ∘ g) ∘ h)(x) = (f ∘ (g ∘ h))(x)
+                      (f ∘ g)(h(x))    = f((g ∘ h)(x))
+                      f(g(h(x)))       = f(g(h(x)))
+
+        id(x) := x
+
+        ∀ f, ∀ x, (f ∘ id)(x) = f(x)
+                  f(id(x))    = f(x)
+                  f(x)        = f(x)
+
+Ein Monoid (A, ~, ∘) ist eine Gruppe, wenn:
+
+  * ∀ x, ∃ a, x ∘ a ~ id und
+              a ∘ x ~ id
+
+Beispiele:
+
+  * (ℚ, =, *): Monoid.
+  * (ℚ\{0}, =, *): Gruppe.
+  * (ℤ, ≡(mod 11), *): Monoid.
+         1 *  1 ≡ 1 (mod 11)
+         2 *  6 ≡ 1 (mod 11)
+         3 *  4 ≡ 1 (mod 11)
+         4 *  3 ≡ 1 (mod 11)
+         5 *  9 ≡ 1 (mod 11)
+         6 *  2 ≡ 1 (mod 11)
+         7 *  8 ≡ 1 (mod 11)
+         8 *  7 ≡ 1 (mod 11)
+         9 *  5 ≡ 1 (mod 11)
+        10 * 10 ≡ 1 (mod 11)
+         0 * ?? ≡ 1 (mod 11) Kein Inverses.
+  * (ℤ\11ℤ, ≡(mod 11), *): Gruppe.
+
+ℤ\11ℤ ≠ ℤ/11ℤ
+
+    ℤ/11ℤ = { 11ℤ + 0, 11ℤ + 1, 11ℤ + 2, ..., 11ℤ + 10 }
+
+Eine Funktion f : A → B ist ein Halbgruppen-Homomorphismus von der
+Halbgruppe G zur Halbgruppe H, wenn:
+
+    G = (A, ~, ∘)
+    H = (B, ≈, ⋄)
+
+    Strukturerhaltung:
+    ∀ x y, f(x ∘ y) ≈ f(x) ⋄ f(y)
+
+Beispiel:
+
+    log : ℝ+ → ℝ
+
+    G = (ℝ+, =, *)
+    H = (ℝ,  =, +)
+
+    ∀ x y, log(x * y) = log(x) + log(y)
+
+Eine Funktion f : A → B ist ein Monoid-Homomorphismus vom Monoid G zum
+Monoid H, wenn:
+
+    G = (A, ~, ∘)
+    H = (B, ≈, ⋄)
+
+    Strukturerhaltung:
+      * ∀ x y, f(x ∘ y) ≈ f(x) ⋄ f(y)
+      * f(id) ≈ id
+
+Beispiel: log.
+
+Beispiel:
+
+    G = (A*, =, ++)
+    H = (ℝ, =, +)
+
+    len : A* → ℤ
+    len("abc") = 3
+
+    len("abc" ++ "def") = len("abc") + len("def")
+    len("") = 0
+
+Beispiel:
+
+    G = (ℕ, =, +)
+    H = (ℤ*, =, ++)
+
+    f : ℕ → ℤ*
+    f(0) = []
+    f(1) = [5,5]
+    f(2) = [5,5,5,5]
+    f(3) = [5,5,5,5,5,5]
+
+    f(1 + 2) = f(1) ++ f(2)
+
+Eine Funktion f : A → B ist ein Gruppen-Homomorphismus von der Gruppe G
+zur Gruppe H, wenn:
+
+    G = (A, ~, ∘)
+    H = (B, ≈, ⋄)
+
+    Strukturerhaltung:
+      * ∀ x y, f(x ∘ y) ≈ f(x) ⋄ f(y)
+      * f(id) ≈ id
+      * ∀ x y z,
+            x ∘ y ~ id und f(x) ∘ z ≈ id
+            → f(y) ≈ z
+
+Beispiel:
+
+    log(1/5) = -log(5)
+
+
+Untergruppen
+------------
+
+Eine Gruppe U ist eine Untergruppe der Gruppe G, wenn:
+
+    G = (A, ~, ∘)
+    U = (B, ~, ∘)
+
+    B ⊆ A
+
+Beispiele für G = (A, ~, ∘):
+
+  * G ⊆ G
+  * (Id, ~, ∘)
+
+Beispiele für G = (ℤ, =, +):
+
+  * (2ℤ, =, +)
+  * (3ℤ, =, +)
+  * (4ℤ, =, +)
+  * (0.5ℤ, =, +): Gruppe, aber keine Untergruppe von G.
+
+
+Äquivalenzklassen
+=================
+
+~ ist eine Äquivalenzrelation über A.
+
+Eine Menge K ist bezüglich ~ eine *Äquivalenzklasse* von x ∈ A, wenn:
+
+  * ∀ (y ∈ K), x ~ y
+  * ∀ (y ∈ A), x ~ y → y ∈ K
+
+Wir schreiben <x> := K.
+
+Beispiel für ≡(mod 3):
+
+    <0> = { ..., -9, -6, -3, 0, 3, 6,  9, ... }
+    <1> = { ..., -8, -5, -2, 1, 4, 7, 10, ... }
+    <2> = { ..., -7, -4, -1, 2, 5, 8, 11, ... }
+    <3> = { ..., -6, -3,  0, 3, 6, 9, 12, ... } (redundant: = <0>)
+
+
+Gruppenordnung
+==============
+
+G = (ℤ, =, +)
+ord(G) = ∞
+
+G = ({0,1,2}, =, f)
+    f(0,0) := 0    f(0,1) := 1    f(0,2) := 2
+    f(1,0) := 1    f(1,1) := 2    f(1,2) := 0
+    f(2,0) := 2    f(2,1) := 0    f(2,2) := 1
+ord(G) = 3
+
+G = (ℤ, ≡(mod 3), +)
+ord(G) = 3
+
