@@ -353,3 +353,24 @@ Schreibweise:
     101ℤ ist die Äquivalenzklasse [101] bzgl. ≡(mod 101)
 
     101ℤ + 1 = { 101*x + 1 | x ∈ ℤ }
+
+
+Produktgruppen
+--------------
+
+G = (A, ~, ∘)
+H = (B, ≈, ⋄)
+
+G × H = (A × B, ≡, #)
+
+    ∀ (x1 x2 ∈ A) (y1 y2 ∈ B),
+      (x1, y1) ≡ (x2, y2) :<=>
+        x1 ~ x2 und y1 ≈ y2
+
+(wer Lust hat: beweise, dass ≡ eine Äquivalenzrelation ist)
+
+    ∀ (x1 x2 ∈ A) (y1 y2 ∈ B),
+      (x1, y1) # (x2, y2) :=
+        (x1 ∘ x2, y1 ⋄ y2)
+
+(wer Lust hat: beweise, dass # assoziativ ist)

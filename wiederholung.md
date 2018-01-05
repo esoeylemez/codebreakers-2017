@@ -1001,3 +1001,97 @@ Beispiele:
   * (A → A, ≡, ∘): Ja, id(x) := x
         f ≡ g := ∀ x, f(x) = g(x)
         (f ∘ g)(x) := f(g(x))
+
+
+Wiederholung vom 01.12.2017
+===========================
+
+Halbgruppe
+----------
+
+(A, ~, ∘):
+
+  1. ∘ : A² → A
+  2. Assoziativ: ∀ (x y z ∈ A), (x ∘ y) ∘ z ~ x ∘ (y ∘ z)
+  3. Kongruenz:
+
+         ∀ x1 x2 y1 y2,
+             x1 ~ x2 und y1 ~ y2 →
+             x1 ∘ y1 ~ x2 ∘ y2.
+
+Beispiel: (ℕ, =, +)
+
+Beispiel: (ℕ, =, *)
+
+Beispiel: (ℕ\{0}, =, +)
+
+Beispiel: (B → B, =, ∘)
+  ∘ : (B → B)² → (B → B)
+
+
+Monoid
+------
+
+(A, ~, ∘):
+
+  1. (A, ~, ∘) Halbgruppe
+  2. Neutrales Element: ∃ id, ∀ (x ∈ A), x ∘ id ~ id ∘ x ~ x
+
+id ist "eindeutig":
+
+  id1, id2 neutral → id1 ~ id2
+
+Beispiel:  (ℤ, ≡(mod 2), *)
+
+    ∀ x, 1*x ≡ x (mod 2)
+    ∀ x, 3*x ≡ x (mod 2)
+      Beweis:
+        1 ≡ 3 und 1*x ≡ x → 3*x ≡ x
+
+Gruppe
+------
+
+(A, ~, ∘):
+
+  1. (A, ~, ∘) Monoid,
+  2. ∀ x, ∃ y, x ∘ y ~ y ∘ x ~ id
+  3. inv : A → A, sodass:
+     ∀ x, x ∘ inv(x) ~ inv(x) ∘ x ~ id
+
+Gruppen(homo-)morphismus
+------------------------
+
+G = (A, ~, ∘)
+H = (B, ≈, ⋄)
+G, H Gruppen
+
+f : A → B ist ein Morphismus von G nach H, wenn:
+
+  1. ∀ x y, f(x ∘ y) ≈ f(x) ⋄ f(y)
+
+Wir schreiben: f : G → H
+
+Beispiel:
+
+    log : ℝ+ → ℝ
+
+    G = (ℝ+, =, *)
+    H = (ℝ,  =, +)
+
+    log(x * y) = log(x) + log(y)
+
+    log : (ℝ+, =, *) → (ℝ, =, +)
+
+
+Isomorphismen
+-------------
+
+G, H sind Gruppen.
+
+f  : G → H
+f' : H → G
+
+∀ (x ∈ G), f'(f(x)) = x bzw. f' ∘ f = id
+∀ (y ∈ H), f(f'(y)) = y bzw. f ∘ f' = id
+
+(Homomorphic Encryption)
