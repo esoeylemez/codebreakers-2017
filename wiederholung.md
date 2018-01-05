@@ -646,3 +646,358 @@ ord(G) = 3
 G = (ℤ, ≡(mod 3), +)
 ord(G) = 3
 
+
+Wiederholung vom 17.11.2017
+===========================
+
+Eine Halbgruppe (A, ~, ∘) ist:
+
+  * Assoziativität: ∀ x y z, (x ∘ y) ∘ z ~ x ∘ (y ∘ z)
+  * Kongruenzgesetz:
+        ∀ x1 x2 y1 y2,
+            x1 ~ x2 und y1 ~ y2 →
+            x1 ∘ y1 ~ x2 ∘ y2.
+
+Ein Monoid (A, ~, ∘) ist eine Halbgruppe, wobei:
+
+  * ∃ id, ∀ x, x ∘ id ~ x,
+               id ∘ x ~ x.
+
+Eine Gruppe (A, ~, ∘) ist ein Monoid, wobei:
+
+  * ∀ x, ∃ y, x ∘ y ~ id,
+              y ∘ x ~ id.
+
+oder:
+
+  * ∃ inv, ∀ x, x ∘ inv(x) ~ id,
+                inv(x) ∘ x ~ id.
+
+Beispiele für Gruppen:
+
+  * (ℤ, =, +),
+  * (ℝ\{0}, =, *),
+  * Turn = { O, U, L, R, V, H }
+    (Turn*, ≡, ++)
+
+    inv([R, O]) = [O,O,O,R,R,R]
+
+Gegeben sind Gruppen:
+
+    G = (A, ~, ∘)
+    H = (B, ≈, ⋄)
+
+Ein Funktion (f : A → B) ist ein Gruppenhomomorphismus, wenn:
+
+  * ∀ x y, f(x ∘ y) ≈ f(x) ⋄ f(y)
+  * f(id) ≈ id
+  * ∀ x, f(inv(x)) ≈ inv(f(x))
+
+Exkurs:
+
+    f(x ∘ id) ≈ f(x) ⋄ f(id)
+              ≈ f(x) ⋄ id
+              ≈ f(x)
+
+inv ist ein Gruppenhomomorphismus:
+
+    inv(x ∘ x) ~ inv(x) ∘ inv(x)
+    inv(id) ~ id
+
+Eine Gruppe U = (A', ~, ∘) ist eine Untergruppe U ⊆ G von G = (A, ~, ∘),
+wenn:
+
+  * A' ⊆ A.
+
+Beispiel:
+
+  * ({0}, =, +) ⊆ (ℤ, =, +)
+  * (ℤ,   =, +) ⊆ (ℤ, =, +)
+  * (2ℤ,  =, +) ⊆ (ℤ, =, +)
+
+Äquivalenzklassen über ~ über A: Die Äquivalenzklasse <x> ist eine
+Untermenge von A, wobei:
+
+  * ∀ (y ∈ <x>), x ~ y
+  * ∀ (y ∈ A), x ~ y → y ∈ <x>
+
+Beispiel: ≡(mod 5) ist eine Äquivalenzrelation über ℤ:
+
+  * <0>(≡(mod 5)) = { ..., -10, -5, 0,  5, 10, ... } = 5ℤ
+  * <1>(≡(mod 5)) = { ...,  -9, -4, 1,  6, 11, ... } = 5ℤ + 1
+  * <2>(≡(mod 5)) = { ...,  -8, -3, 2,  7, 12, ... } = 5ℤ + 2
+  * <3>(≡(mod 5)) = { ...,  -7, -2, 3,  8, 13, ... } = 5ℤ + 3
+  * <4>(≡(mod 5)) = { ...,  -6, -1, 4,  9, 14, ... } = 5ℤ + 4
+  * <5>(≡(mod 5)) = { ...,  -5,  0, 5, 10, 15, ... } = <0>(≡(mod 5))
+  * <10>(≡(mod 5)) = <5>(≡(mod 5))
+
+Gruppenordnung: Die Ordnung ord(G) der Gruppe G = (A, ~, ∘) ist:
+
+  * die Anzahl der paarweise unterschiedlichen Äquivalenzklassen bzgl. ~
+
+Beispiel:
+
+    G = (ℤ, ≡(mod 5), +)
+    ord(G) = 5
+
+    H = (ℤ, ≡(mod 12), +)
+    ord(H) = 12
+
+    I = (ℤ, ≡(mod n), +)
+    ord(I) = n
+
+    J = (ℤ \ 11ℤ, ≡(mod 11), *)
+    ord(J) = 10
+
+    K = (ℝ \ 11ℤ, ≡(mod 11), *)  Gruppe?
+
+    L = (ℤ, =, +)
+    ord(L) ist in diesem Workshop (erst mal) nicht definiert.
+    (ord(L) = ∞)
+
+
+Lagrange-Gesetz
+===============
+
+    G = (A, ~, ∘)
+    G ist endlich (heißt: enthält nur endlich viele Äquivalenzklassen)
+
+    U = (A', ~, ∘)
+
+    U ⊆ G → ∃ (k ∈ ℕ), ord(G) = k*ord(U)
+
+Ist U eine Untergruppe von G, dann ist ord(U) ein Teiler von ord(G).
+
+Beispiele:
+
+    G = (ℤ, ≡(mod 15), +)
+    U = (<0> u <3> u <6> u <9> u <12>, ≡(mod 15), +)
+
+    ∃ (k ∈ ℕ), ord(G) = k*ord(U)
+                   15 = 3*5
+
+    V ⊆ G.  Mögliche Ordnungen:
+
+           ord(V) =  1
+           ord(V) =  3
+           ord(V) =  5
+      oder ord(V) = 15
+
+Exkurs (RSA Angreifen über Untergruppen):
+
+    p, q prim
+    G = (ℤ, ≡(mod p*q), +)
+    ord(G) = p*q
+
+    U, U ⊆ G
+
+           ord(U) =   1
+           ord(U) =   p
+           ord(U) =   q
+      oder ord(U) = p*q
+
+    → Bei zufälliger Wahl von U: Wahrscheinlichkeit 1/2, dass
+      ord(U) = p oder ord(U) = q
+
+
+Untergruppen erzeugen
+=====================
+
+    G = (A, ~, ∘)
+    G ist endlich
+    <x> ⊆ A
+
+Bekannte Untergruppen von G:
+
+  * 1 = (<id>, ~, ∘)
+  * G,
+  * Von x generierte Untergruppe:
+    (<x> u <x ∘ x> u <x ∘ x ∘ x> u ...
+       u <id> u <inv(x)> u <inv(x) ∘ inv(x)> u ...,
+     ~, ∘)
+
+    Das sind alle "Potenzen" von <x>.  Potenzschreibweise:
+
+        x^0       := id
+        x^i       := inv(x)^(-i)  wenn i < 0
+        x^(i + 1) := x ∘ x^i      wenn i ≥ 0
+
+    (U({ <x^i> | i ∈ ℤ }), ~, ∘)
+
+Syntax:  U(M) ist die Vereinigung aller Mengen in M.  Beispiel:
+
+    U({{1,2,3}, {2,3,4}, {3,8}})
+      = {1,2,3} u {2,3,4} u {3,8}
+      = {1,2,3,4,8}
+
+Beispiel für generierte Untergruppen:
+
+    G = (ℤ, ≡(mod 15), +)
+
+    7^ℤ = U({ ... <-7 + -7 + -7>, <-7 + -7>, <-7>, <0>, <7>, <7+7>, <7+7+7>, ... })
+
+    <0>   =        { ...,  0, 15, 30, 45, ... }
+    <7>   =        { ...,  7, 22, 37, 52, ... }
+    <7^2> =        { ..., 14, 29, 44, 59, ... }
+    <7^3> =  <6> = { ...,  6, 21, 36, 51, ... }
+    <7^4> = <13> = { ..., 13, 28, 43, 58, ... }
+    ...
+    → ergibt ℤ
+
+    7^ℤ = G.
+
+Exkurs:
+
+    x ∘ inv(x) ∘ inv(x) ∘ inv(inv(x)) ∘ x
+      ~ id ∘ inv(x) ∘ inv(inv(x)) ∘ x
+      ~ inv(x) ∘ inv(inv(x)) ∘ x
+      ~ inv(x) ∘ x ∘ x
+      ~ id ∘ x
+      ~ x
+
+
+Wiederholung vom 01.12.2017
+===========================
+
+Kartesisches Produkt
+--------------------
+
+("kartesisch" von Rene Descartes)
+
+Das kartesische Produkt A×B aus A und B ist die Menge der Paare (x, y),
+wobei (x ∈ A) und (y ∈ B).
+
+Beispiel: ℤ×ℂ
+    (1, 1 - i) ∈ ℤ×ℂ
+    (1 - i, 2) ∉ ℤ×ℂ
+
+Beispiel: ℤ×ℤ = ℤ²
+    (1, 1)   ∈ ℤ²
+    (1, π)   ∉ ℤ², weil π ∉ ℤ
+    (1/5, 0) ∉ ℤ², weil 1/5 ∉ ℤ
+
+
+Relationen
+----------
+
+Eine Relation ~ über einer Menge A ist eine Teilmenge von A².
+
+Beispiel: ~ über {1,2,3}
+    ~ = { (1, 2), (2, 3), (3, 1) }
+    ~ = {}
+    ~ = {1,2,3}²
+
+Beispiel: "=" über ℕ
+    "=" = { (0, 0), (1, 1), (2, 2), (3, 3), ... }
+        = { (x, x) | x ∈ ℕ }
+
+Beispiel: f : ℕ → ℕ
+          f(x) = x + 1
+    f = { (0, 1), (1, 2), (2, 3), ... }
+
+
+Was ist eine Äquivalenzrelation?
+--------------------------------
+
+Eine Relation ~ über einer Menge A, für die gilt:
+
+  * Reflexivität:  ∀ x,     x ~ x
+  * Symmetrie:     ∀ x y,   x ~ y → y ~ x
+  * Transitivität: ∀ x y z, x ~ y und y ~ z → x ~ z
+
+Beispiel: ∀ A, "=" über A.
+
+Beispiel: ≡(mod 3) über ℤ.
+    { ..., (0, -6), (0, -3), (0, 0), (0, 3), (0, 6), ...,
+      ..., (1, -5), (1, -2), (1, 1), (1, 4), (1, 7), ... }
+
+    "x ≡ y (mod 3)": ∃ (k ∈ ℤ), x - y = k*3
+
+
+Äquivalenzklassen
+-----------------
+
+Für eine Äquivalenzrelation ~ über A ist <x> eine Äquivalenzklasse,
+wenn:
+
+  * ∀ (y ∈ A), (x ~ y) → (y ∈ <x>)
+  * ∀ (y ∈ A), y ∈ <x> → x ~ y
+
+oder kurz:
+
+  * ∀ y, x ~ y <=> y ∈ <x>
+
+
+Halbgruppen
+-----------
+
+Eine Halbgruppe (A, ~, ∘) ist:
+
+  * eine Menge A,
+  * eine Äquivalenzrelation ~ über A,
+  * eine Funktion ∘ : A² → A,
+
+wobei:
+
+  * Assoziativität: ∀ x y z, x ∘ (y ∘ z) ~ (x ∘ y) ∘ z
+  * Kongruenz:
+
+        ∀ x1 x2 y1 y2,
+            x1 ~ y1 und x2 ~ y2 →
+            x1 ∘ y1 ~ x2 ∘ y2.
+
+### Halbgruppen in der Literatur
+
+(A, ∘) ist eine Halbgruppe, wenn:
+
+  * Assoziativität: ∀ x y z, x ∘ (y ∘ z) = (x ∘ y) ∘ z.
+
+
+Halbgruppenmorphismen
+---------------------
+
+Gegebene Halbgruppen:
+
+    G = (A, ~, ∘)
+    H = (B, ≈, ⋄)
+
+Eine Funktion (f : A → B) ist ein Halbgruppenmorphismus, wenn:
+
+  * ∀ (x y ∈ A), f(x ∘ y) ≈ f(x) ⋄ f(y)
+
+Wir schreiben: (f : G → H)
+
+Beispiel: log : (ℝ+, =, *) → (ℝ, =, +)
+    ∀ x y, log(x * y) = log(x) + log(y)
+
+Beispiel:
+    G = (A*, =, ++)
+    H = (ℕ, =, +)
+
+    len : A* → ℕ
+    len("abc") = 3
+
+    len("abc" ++ "de") = len("abc") + len("de")
+                     5 =          3 +         2
+
+    len : G → H
+
+
+Monoide
+-------
+
+Eine Halbgruppe (A, ~, ∘) ist ein Monoid, wenn:
+
+  * Neutrales Element:
+        ∃ id, ∀ x, x ∘ id ~ x und
+                   id ∘ x ~ x.
+
+Beispiele:
+
+  * (ℤ, =, +):     Ja, id = 0,
+  * (ℂ, =, *):     Ja, id = 1,
+  * (ℚ, =, -):     Nein, keine Halbgruppe,
+  * (A*, =, ++):   Ja, id = [],
+  * (A → A, ≡, ∘): Ja, id(x) := x
+        f ≡ g := ∀ x, f(x) = g(x)
+        (f ∘ g)(x) := f(g(x))
