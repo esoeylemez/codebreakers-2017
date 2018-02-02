@@ -1095,3 +1095,154 @@ f' : H → G
 ∀ (y ∈ H), f(f'(y)) = y bzw. f ∘ f' = id
 
 (Homomorphic Encryption)
+
+
+Wiederholung vom 05.01.2018
+===========================
+
+Gruppenmorphismen
+-----------------
+
+G = (A, ~, ∘)
+H = (B, ≈, ⋄)
+
+f : A → B ist ein Morphismus von G nach H, wenn:
+
+  * ∀ (x y ∈ A), f(x ∘ y) ≈ f(x) ⋄ f(y),
+  * f(id_G) ≈ id_H,
+  * ∀ (x ∈ A), f(inv(x)) ≈ inv(f(x)).
+
+
+Isomorphismen
+-------------
+
+G = (A, ~, ∘)
+H = (B, ≈, ⋄)
+
+f : G → H ist ein Isomorphismus, wenn:
+
+  * ∃ (g : H → G),
+      (∀ (x ∈ A), h(g(x)) ~ x) und
+      (∀ (y ∈ B), g(h(y)) ≈ y).
+
+
+Produktgruppe
+-------------
+
+G = (A, ~, ∘)
+H = (B, ≈, ⋄)
+
+G × H = (A × B, ≡, #)
+
+  * (x1, y1) ≡ (x2, y2) :<=>
+    x1 ~ x2 und y1 ≈ y2.
+
+  * (x1, y1) # (x2, y2) :=
+    (x1 ∘ x2, y1 ⋄ y2).
+
+
+Mächtigkeit
+-----------
+
+G = (A, ~, ∘)
+
+card(G) ist die Anzahl der Äquivalenzklassen von ~.
+
+
+Untergruppe
+-----------
+
+G = (A, ~, ∘)
+
+U = (B, ~, ∘) ist eine Untergruppe von G, wenn:
+
+  * B ⊆ A,
+  * U ist eine Gruppe.
+
+
+Lagrange-Satz
+-------------
+
+G, U Gruppen, U ⊆ G.
+
+∃ (k ∈ ℕ\{0}), card(G) = k*card(U)
+
+card(G) = 15
+U ⊆ G
+card(U) ∈ { 1, 3, 5, 15 }
+
+
+Diffie-Hellman
+--------------
+
+Öffentlich: n, g
+
+Geheim: xA, xB
+
+yA ≡ g^xA (mod n)
+yB ≡ g^xB (mod n)
+
+Öffentlich: yA, yB
+
+sA ≡ yB^xA (mod n)
+sB ≡ yA^xB (mod n)
+
+→ sA ≡ sB (mod n)
+
+
+n = 103
+g = 5
+
+Alice: xA = 47
+Bob:   xB = 82
+
+Öffentlich:
+
+    yA ≡ g^xA
+       ≡ 44   (mod 103)
+
+    yB ≡ g^xB
+       ≡ 63   (mod 103)
+
+Alice:
+
+    sA ≡ yB^xA
+       ≡ 63^47
+       ≡ 19    (mod 103)
+
+Bob:
+
+    sB ≡ yA^xB
+       ≡ 44^82
+       ≡ 19    (mod 103)
+
+Angreifer:
+
+    n, g,
+    yA, yB,
+
+    yA ≡ g^xA (mod n)
+    yB ≡ g^xB (mod n)
+
+    s ≡ yA^xB ≡ yB^xA (mod n)
+
+    g^0
+    g^5000
+
+    yA, yA*g
+
+    g^0, g^2, g^4, g^6
+
+    yA ≡ g^xA (mod n)
+
+    yA = g^xA
+
+    xA = log(yA)/log(g)
+
+
+Verallgemeinertes Diffie-Hellman
+--------------------------------
+
+G = (A, ~, ∘), g ∈ G,
+
+g^5 := g ∘ g ∘ g ∘ g ∘ g
